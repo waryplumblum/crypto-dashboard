@@ -15,8 +15,11 @@
             </mat-form-field>
 
             <!-- Botón para mostrar/ocultar filtros secundarios, SOLO en móvil -->
-            <button mat-stroked-button class="toggle-filters-btn" *ngIf="isMobile" (click)="showFilters = !showFilters"
-                aria-label="Alternar filtros avanzados">
+            <button mat-stroked-button 
+                    class="toggle-filters-btn" 
+                    *ngIf="isMobile && selectedCrypto" 
+                    (click)="showFilters = !showFilters"
+                    aria-label="Alternar filtros avanzados">
                 {{ showFilters ? 'Ocultar filtros' : 'Más filtros' }}
             </button>
         </div>
