@@ -4,6 +4,14 @@ import { CryptoService } from '../../services/crypto-service';
 import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
+import { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend, Filler, BarController, BarElement } from 'chart.js';
+
+Chart.register(
+  LineController, LineElement, PointElement,
+  LinearScale, Title, CategoryScale, Tooltip, Legend, Filler,
+  BarController, BarElement
+);
+
 describe('CryptoChartComponent', () => {
   let component: CryptoChartComponent;
   let fixture: ComponentFixture<CryptoChartComponent>;

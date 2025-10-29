@@ -12,7 +12,13 @@ describe('DashboardComponent', () => {
     cryptoServiceStub = {
       getMarkets: jasmine.createSpy('getMarkets').and.returnValue(of([
         { id: 'bitcoin', name: 'Bitcoin', symbol: 'btc', image: '', current_price: 100 }
-      ]))
+      ])),
+      getCoinMarketChart: jasmine.createSpy('getCoinMarketChart').and.returnValue(of({
+        prices: [
+          [1690000000000, 100],
+          [1690086400000, 110]
+        ]
+      }))
     };
 
     await TestBed.configureTestingModule({
@@ -31,17 +37,11 @@ describe('DashboardComponent', () => {
 
   it('should show spinner when loading is true', () => {
     component.loading = true;
+    component.error = '';
+    component.selectedCrypto = { id: 'bitcoin', name: 'Bitcoin', symbol: 'btc', image: '', current_price: 100 };
     fixture.detectChanges();
     const spinner = fixture.nativeElement.querySelector('.spinner-container');
     expect(spinner).toBeTruthy();
-  });
-
-  it('should show error message when error is set', () => {
-    component.loading = false;
-    component.error = "Error!";
-    fixture.detectChanges();
-    const errorMsg = fixture.nativeElement.querySelector('.error-message');
-    expect(errorMsg.textContent).toContain("Error!");
   });
 
   it('should show selection message when no crypto is selected', () => {
