@@ -50,27 +50,31 @@ Dashboard interactivo que visualiza datos en tiempo real de criptomonedas usando
 
 ---
 
-## Deploy en GitHub Pages
+## Deploy en GitHub Pages (Automático con GitHub Actions)
 
-Para publicar una nueva versión en GitHub Pages:
+Cada vez que haces push a la rama `main`:
 
-1. Genera el build de producción y mueve los archivos automáticamente:
-    ```bash
-    npm run deploy-ghpages
-    ```
-2. Sube los cambios de la carpeta `docs`:
-    ```bash
-    git add docs/
-    git commit -m "Actualizar build de producción para GitHub Pages"
-    git push
-    ```
-3. GitHub Pages actualizará el sitio automáticamente.  
-   Tu app estará disponible en:
+- GitHub Actions ejecuta las pruebas unitarias automáticamente.
+- Si **todas las pruebas pasan**, se genera el build de producción y se actualiza la carpeta `/docs`.
+- El contenido de `/docs` se publica automáticamente en GitHub Pages.
 
-   [https://waryplumblum.github.io/crypto-dashboard/](https://waryplumblum.github.io/crypto-dashboard/)
+Tu aplicación estará disponible siempre en:
 
-> **Nota:** El build de Angular genera los archivos en `docs/browser` por defecto.  
-> El script `move-browser-build.js` mueve todo a la raíz de `docs/` para compatibilidad con GitHub Pages.
+[https://waryplumblum.github.io/crypto-dashboard/](https://waryplumblum.github.io/crypto-dashboard/)
+
+> **Nota:** Ya no es necesario ejecutar `npm run deploy-ghpages` ni subir manualmente la carpeta `/docs`. El proceso de publicación es 100% automático y seguro.
+
+---
+
+### Deploy manual (opcional solo para pruebas locales)
+
+Si por alguna razón necesitas generar el build localmente:
+
+```bash
+npm run deploy-ghpages
+```
+
+Esto creará la carpeta `/docs` lista para publicar, pero **no es necesario subirla manualmente** si estás usando el flujo automático.
 
 ---
 
