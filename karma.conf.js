@@ -1,5 +1,3 @@
-process.env.CHROME_BIN = "C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe";
-
 module.exports = function (config) {
   config.set({
     basePath: '',
@@ -23,7 +21,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Brave'],
+    browsers: ['ChromeHeadless'],
     customLaunchers: {
       Brave: {
         base: 'Chrome',
@@ -33,4 +31,8 @@ module.exports = function (config) {
     singleRun: false,
     restartOnFileChange: true
   });
+
+  if (process.env.KARMA_BROWSER === 'Brave') {
+    config.browsers = ['Brave'];
+  }
 };
