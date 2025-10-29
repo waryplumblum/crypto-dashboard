@@ -46,7 +46,31 @@ Dashboard interactivo que visualiza datos en tiempo real de criptomonedas usando
 
 ## Demo en Vivo
 
-<!-- Si tienes un deploy, pon el link aquí -->
+- [https://waryplumblum.github.io/crypto-dashboard/](https://waryplumblum.github.io/crypto-dashboard/)
+
+---
+
+## Deploy en GitHub Pages
+
+Para publicar una nueva versión en GitHub Pages:
+
+1. Genera el build de producción y mueve los archivos automáticamente:
+    ```bash
+    npm run deploy-ghpages
+    ```
+2. Sube los cambios de la carpeta `docs`:
+    ```bash
+    git add docs/
+    git commit -m "Actualizar build de producción para GitHub Pages"
+    git push
+    ```
+3. GitHub Pages actualizará el sitio automáticamente.  
+   Tu app estará disponible en:
+
+   [https://waryplumblum.github.io/crypto-dashboard/](https://waryplumblum.github.io/crypto-dashboard/)
+
+> **Nota:** El build de Angular genera los archivos en `docs/browser` por defecto.  
+> El script `move-browser-build.js` mueve todo a la raíz de `docs/` para compatibilidad con GitHub Pages.
 
 ---
 
