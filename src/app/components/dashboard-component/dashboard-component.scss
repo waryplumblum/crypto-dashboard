@@ -8,31 +8,44 @@
 
 .filters-bar {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.3rem;
+  flex-direction: column;
+  gap: 0.5rem; // menos espacio entre grupos
   padding: 1.2rem 2rem 1.2rem 2rem;
-  align-items: center;
+  align-items: stretch;
   background: #fff;
   border-bottom: 1px solid #ececec;
   justify-content: center;
+}
 
-  .mat-form-field {
-    margin: 0;
-    min-width: 170px;
-    max-width: 230px;
-    flex: initial;
-  }
+/* Agrupa el filtro principal y el botón */
+.main-filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.10rem; // reduce gap entre filtro y botón
+}
 
-  .crypto-field {
-    min-width: 210px;
-    max-width: 260px;
-  }
+/* Quita el margen inferior del mat-form-field SOLO aquí */
+.main-filter-group .mat-form-field {
+  margin-bottom: 0 !important;
+}
 
-  .chart-type-field,
-  .currency-field,
-  .range-field {
-    min-width: 130px;
-    max-width: 170px;
+/* Ajuste visual para el botón */
+.toggle-filters-btn {
+  margin-top: 0.15rem;
+  margin-bottom: 0.45rem;
+  width: 90%;
+  max-width: 300px;
+  align-self: center;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.12);
+
+  mat-icon {
+    margin-right: 0.3em;
+    font-size: 1.35em;
+    vertical-align: middle;
   }
 }
 
@@ -180,21 +193,112 @@
   }
 }
 
-@media (max-width: 900px) {
+.secondary-filters {
+  overflow: hidden;
+  transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s;
+  max-height: 900px; // suficiente para el contenido
+  opacity: 1;
+  will-change: max-height, opacity;
+
+  &.hidden {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.toggle-filters-btn {
+  margin: 0;
+  width: 90%;
+  max-width: 300px;
+  align-self: center;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.08);
+  transition: background 0.3s, box-shadow 0.3s, color 0.2s;
+  border: none;
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(90deg, #1565c0 0%, #64b5f6 100%);
+    color: #e3f2fd;
+    box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.13);
+  }
+
+  mat-icon {
+    font-size: 1.2em;
+    margin-right: 0.4em;
+    vertical-align: middle;
+  }
+}
+
+@media (min-width: 1101px) {
   .filters-bar {
-    flex-wrap: wrap;
-    gap: 1rem 2vw;
-    padding: 1.1rem 1vw 0.9rem 1vw;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 900px; // o el tamaño que prefieras
+    margin: 0 auto;
+    padding: 1.3rem 0.5rem 1.3rem 0.5rem;
+  }
 
-    .mat-form-field {
-      min-width: 140px;
-      max-width: 200px;
-    }
+  .main-filter-group {
+    flex: 1 1 280px;
+    min-width: 210px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
 
-    .crypto-field {
-      min-width: 180px;
-      max-width: 240px;
-    }
+  .secondary-filters {
+    flex: 3 1 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1.3rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .chart-type-field,
+  .currency-field,
+  .range-field {
+    min-width: 130px;
+    max-width: 210px;
+    width: 100%;
+  }
+
+  .toggle-filters-btn {
+    display: none !important; // No mostrar el botón en desktop
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1100px) {
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding: 1.2rem 3vw 1.2rem 3vw;
+  }
+
+  .secondary-filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; // 3 filtros secundarios en una sola fila
+    gap: 0.7rem;
+  }
+
+  .chart-type-field,
+  .currency-field,
+  .range-field {
+    min-width: 0;
+    max-width: unset;
+    width: 100%;
   }
 }
 

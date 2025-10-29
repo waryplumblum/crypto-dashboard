@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -25,11 +25,15 @@ export class DashboardComponent implements OnInit {
   selectedChartType: 'line' | 'bar' = 'line';
   selectedCurrency: 'usd' | 'eur' = 'usd';
 
+  isMobile = false;
+  showFilters = false;
+
   compareCrypto = (a: any, b: any) => a && b && a.id === b.id;
 
   constructor(private cryptoService: CryptoService) { }
 
   ngOnInit() {
+    this.onResize();
     this.cryptoService.getMarkets().subscribe({
       next: data => {
         this.cryptos = data;
@@ -46,4 +50,11 @@ export class DashboardComponent implements OnInit {
     // Puedes hacer tracking, analytics, etc. aquí si quieres
     // Si quieres resetear un filtro al seleccionar otra cripto, hazlo aquí
   }
+
+  @HostListener('window:resize', [])
+  onResize() {
+    this.isMobile = window.innerWidth < 600;
+    if (!this.isMobile) this.showFilters = true; // Siempre muestra en desktop
+  }
+
 }
