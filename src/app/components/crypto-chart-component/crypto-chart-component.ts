@@ -45,6 +45,13 @@ export class CryptoChartComponent implements OnChanges {
   }
 
   getChartOptions(): ChartOptions {
+    const isDark = this.isDarkMode();
+    const axisColor = isDark ? "#ffffff" : "#5c5c5c";
+    const gridColor = isDark ? "#888" : "#f0f0f0";
+    const titleColor = isDark ? "#ffffff" : "#222";
+    const legendColor = isDark ? "#ffffff" : "#1976d2";
+    const tooltipBg = isDark ? "#181818" : "#fff";
+    const tooltipText = isDark ? "#ffffff" : "#222";
     const currencySymbol = this.currency === 'usd' ? '$' : this.currency === 'eur' ? '€' : this.currency.toUpperCase();
 
     return {
@@ -53,15 +60,15 @@ export class CryptoChartComponent implements OnChanges {
         legend: {
           display: true,
           labels: {
-            color: "#1976d2",
+            color: legendColor,
             font: { size: 14, weight: 'bold' }
           }
         },
         tooltip: {
           enabled: true,
-          backgroundColor: "#222",
-          titleColor: "#fff",
-          bodyColor: "#fff",
+          backgroundColor: tooltipBg,
+          titleColor: tooltipText,
+          bodyColor: tooltipText,
           borderColor: "#aaa",
           borderWidth: 1,
           callbacks: {
@@ -76,6 +83,12 @@ export class CryptoChartComponent implements OnChanges {
             },
             title: (items) => items[0]?.label ?? ''
           }
+        },
+        title: {
+          display: true,
+          text: `${this.coinName} - Últimos ${this.days} días`,
+          color: titleColor, // BLANCO PURO EN DARK
+          font: { size: 18, weight: 'bold' }
         }
       },
       elements: {
@@ -93,14 +106,15 @@ export class CryptoChartComponent implements OnChanges {
         }
       },
       scales: {
-        x: { grid: { color: "#f0f0f0" }, ticks: { color: "#5c5c5c" } },
+        x: {
+          grid: { color: gridColor },
+          ticks: { color: axisColor }
+        },
         y: {
-          grid: { color: "#f0f0f0" },
+          grid: { color: gridColor },
           ticks: {
-            color: "#5c5c5c",
-            // 👇 Personaliza los labels del eje Y
+            color: axisColor,
             callback: function (value) {
-              // value viene como número, formatea bonito:
               return `${currencySymbol}${(+value).toLocaleString('en-US', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
@@ -176,4 +190,15 @@ export class CryptoChartComponent implements OnChanges {
       }
     });
   }
+
+  isDarkMode(): boolean {
+    return document.documentElement.classList.contains('dark-theme');
+  }
+
+  public refreshChartColors() {
+    this.lineChartOptions = this.getChartOptions();
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 10);
+  }
+
+
 }

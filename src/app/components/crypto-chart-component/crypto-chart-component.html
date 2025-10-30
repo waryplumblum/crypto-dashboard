@@ -13,7 +13,6 @@
 }
 @else {
 <div class="chart-responsive-wrapper" aria-label="Gráfico de precios para {{coinName}}">
-    <h4>{{coinName}} - Últimos {{days}} días</h4>
     <canvas baseChart [data]="lineChartData" [options]="lineChartOptions" [type]="lineChartType" [legend]="true">
     </canvas>
 </div>

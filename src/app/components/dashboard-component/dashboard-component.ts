@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -8,10 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { CryptoService } from '../../services/crypto-service';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-dashboard-component',
-  imports: [CommonModule, MatListModule, MatProgressSpinnerModule, CryptoChartComponent, FormsModule, MatFormFieldModule, MatSelectModule, MatCardModule],
+  imports: [CommonModule, MatListModule, MatProgressSpinnerModule, CryptoChartComponent, FormsModule, MatFormFieldModule, MatSelectModule, MatCardModule, MatSlideToggleModule],
   templateUrl: './dashboard-component.html',
   styleUrl: './dashboard-component.scss',
 })
@@ -27,6 +28,9 @@ export class DashboardComponent implements OnInit {
 
   isMobile = false;
   showFilters = false;
+
+  @ViewChild('cryptoChart') cryptoChartComp!: CryptoChartComponent;
+
 
   compareCrypto = (a: any, b: any) => a && b && a.id === b.id;
 
@@ -55,6 +59,19 @@ export class DashboardComponent implements OnInit {
   onResize() {
     this.isMobile = window.innerWidth < 600;
     if (!this.isMobile) this.showFilters = true; // Siempre muestra en desktop
+  }
+
+  toggleTheme(isDark: boolean) {
+    const html = document.documentElement;
+    if (isDark) {
+      html.classList.add('dark-theme');
+    } else {
+      html.classList.remove('dark-theme');
+    }
+    // Espera un momento y refresca el chart
+    setTimeout(() => {
+      this.cryptoChartComp.refreshChartColors();
+    }, 100);
   }
 
 }

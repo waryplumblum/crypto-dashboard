@@ -1,7 +1,11 @@
 <section class="dashboard-main-grid">
+    <div class="theme-toggle-fab">
+        <mat-slide-toggle (change)="toggleTheme($event.checked)" color="primary" style="margin-bottom: 1rem;">
+            Modo oscuro
+        </mat-slide-toggle>
+    </div>
     <div class="filters-bar">
         <div class="main-filter-group">
-
             <!-- Filtro de criptomoneda -->
             <mat-form-field appearance="fill" class="crypto-field" aria-label="Selecciona criptomoneda">
                 <mat-label>Criptomoneda</mat-label>
@@ -15,16 +19,11 @@
             </mat-form-field>
 
             <!-- Botón para mostrar/ocultar filtros secundarios, SOLO en móvil -->
-            <button mat-stroked-button 
-                    class="toggle-filters-btn" 
-                    *ngIf="isMobile && selectedCrypto" 
-                    (click)="showFilters = !showFilters"
-                    aria-label="Alternar filtros avanzados">
+            <button mat-stroked-button class="toggle-filters-btn" *ngIf="isMobile && selectedCrypto"
+                (click)="showFilters = !showFilters" aria-label="Alternar filtros avanzados">
                 {{ showFilters ? 'Ocultar filtros' : 'Más filtros' }}
             </button>
         </div>
-
-
         <!-- Filtros secundarios colapsables -->
         <div class="secondary-filters" [class.hidden]="isMobile && !showFilters">
             <!-- Filtro de tipo de gráfico -->
@@ -79,8 +78,8 @@
         </mat-card>
     </div>
     <main class="crypto-chart-panel" aria-label="Panel principal de dashboard">
-        <app-crypto-chart-component [coinId]="selectedCrypto.id" [coinName]="selectedCrypto.name" [days]="selectedDays"
-            [chartType]="selectedChartType" [currency]="selectedCurrency">
+        <app-crypto-chart-component #cryptoChart [coinId]="selectedCrypto.id" [coinName]="selectedCrypto.name"
+            [days]="selectedDays" [chartType]="selectedChartType" [currency]="selectedCurrency">
         </app-crypto-chart-component>
     </main>
     }

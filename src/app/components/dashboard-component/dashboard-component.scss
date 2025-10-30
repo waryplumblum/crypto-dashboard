@@ -1,7 +1,7 @@
 .dashboard-main-grid {
   display: flex;
   flex-direction: column;
-  background: #f6fafb;
+  background: var(--my-bg);
   min-height: 100vh;
   height: 100vh;
 }
@@ -12,7 +12,8 @@
   gap: 0.5rem; // menos espacio entre grupos
   padding: 1.2rem 2rem 1.2rem 2rem;
   align-items: stretch;
-  background: #fff;
+  background: var(--my-card-bg);
+  color: var(--my-text);
   border-bottom: 1px solid #ececec;
   justify-content: center;
 }
@@ -41,6 +42,8 @@
   font-weight: 600;
   font-size: 1rem;
   box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.12);
+  background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+  color: #fff;
 
   mat-icon {
     margin-right: 0.3em;
@@ -68,6 +71,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: var(--my-card-bg);
+  color: var(--my-text);
 
   .crypto-header {
     display: flex;
@@ -83,7 +88,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #f7fafc;
+    background: var(--my-bg);
     box-shadow: 0 0 6px #ececec;
     overflow: hidden;
     margin: 0;
@@ -108,7 +113,7 @@
   .crypto-name {
     font-size: 1.18rem;
     font-weight: 700;
-    color: #2b2d42;
+    color: var(--my-text);
   }
 
   .crypto-symbol {
@@ -158,7 +163,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #f6fafb;
+  background: var(--my-bg);
   border-radius: 14px;
   box-shadow: 0 0 12px 0 rgba(50, 50, 93, 0.045);
   padding: 1.3rem 1.7rem 1.3rem 1.7rem;
@@ -180,7 +185,7 @@
   justify-content: center;
   margin-right: 7px;
   border-radius: 50%;
-  background: #f6fafb;
+  background: var(--my-bg);
   box-shadow: 0 0 2px #e0e0e0;
   overflow: hidden;
   vertical-align: middle;
@@ -235,6 +240,25 @@
   }
 }
 
+.theme-toggle-fab {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 1001;
+  background: transparent;
+  box-shadow: none;
+  padding: 0.2rem 0.6rem;
+  border-radius: 30px;
+  // Opcional: un ligero borde o sombra para destacar en dark
+  // border: 1px solid rgba(0,0,0,0.08);
+
+  .mat-slide-toggle,
+  .mat-slide-toggle-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
 @media (min-width: 1101px) {
   .filters-bar {
     flex-direction: row;
@@ -285,6 +309,7 @@
     align-items: stretch;
     gap: 0.6rem;
     padding: 1.2rem 3vw 1.2rem 3vw;
+     margin-top: 2.5rem;
   }
 
   .secondary-filters {
@@ -300,6 +325,13 @@
     max-width: unset;
     width: 100%;
   }
+
+  .theme-toggle-fab {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.1rem 0.2rem;
+  }
+
 }
 
 @media (max-width: 600px) {
@@ -318,5 +350,14 @@
       max-width: 100vw;
       width: 100%;
     }
+  }
+
+  .theme-toggle-fab {
+    position: static;
+    margin: 0 auto 0.5rem auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0.1rem 0;
   }
 }
