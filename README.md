@@ -168,10 +168,10 @@ Puedes ver/cubrir los tests en los archivos `*.spec.ts` de cada componente o ser
 
 ## Mejoras futuras
 
-- Exportar gráfico como imagen.
-- Selector multimoneda para comparar varias criptos.
-- Tema oscuro/claro.
-- Internacionalización (i18n).
+- [🚧] Exportar gráfico como imagen.
+- [🚧] Selector multimoneda para comparar varias criptos.
+- [✔] Tema oscuro/claro.
+- [🚧] Internacionalización (i18n).
 
 ---
 
