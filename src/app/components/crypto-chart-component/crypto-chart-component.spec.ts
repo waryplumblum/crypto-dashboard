@@ -81,17 +81,15 @@ describe('CryptoChartComponent', () => {
   });
 
   it('should update chart data when fetchChart is called', fakeAsync(() => {
-    // Reset chart data to empty
     component.lineChartData = { labels: [], datasets: [] };
     component.fetchChart();
-    tick(1600); // Espera más de 1.5 segundos para que acabe el setTimeout
+    tick(1600); 
     fixture.detectChanges();
     expect(component.lineChartData.labels?.length).toBeGreaterThan(0);
     expect(component.loading).toBeFalse();
   }));
 
   it('should handle service error and show error message', fakeAsync(() => {
-    // Forzamos el error
     (cryptoServiceStub.getCoinMarketChart as jasmine.Spy).and.returnValue(throwError(() => new Error('fail')));
     component.coinId = 'bitcoin';
     component.loading = true;

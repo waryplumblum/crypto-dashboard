@@ -51,14 +51,13 @@ export class DashboardComponent implements OnInit {
   }
 
   onSelectCrypto() {
-    // Puedes hacer tracking, analytics, etc. aquí si quieres
-    // Si quieres resetear un filtro al seleccionar otra cripto, hazlo aquí
+
   }
 
   @HostListener('window:resize', [])
   onResize() {
     this.isMobile = window.innerWidth < 600;
-    if (!this.isMobile) this.showFilters = true; // Siempre muestra en desktop
+    if (!this.isMobile) this.showFilters = true;
   }
 
   toggleTheme(isDark: boolean) {
@@ -68,7 +67,6 @@ export class DashboardComponent implements OnInit {
     } else {
       html.classList.remove('dark-theme');
     }
-    // Espera un momento y refresca el chart
     setTimeout(() => {
       this.cryptoChartComp.refreshChartColors();
     }, 100);

@@ -1,6 +1,6 @@
 .chart-responsive-wrapper {
     width: 100%;
-    max-width: 1200px; // Gráfico más ancho en desktop
+    max-width: 1200px;
     margin: 0 auto;
     padding: 1.2rem 0.3rem 2.5rem 0.3rem;
     display: flex;
@@ -10,7 +10,7 @@
 
 .chart-responsive-wrapper canvas {
     width: 100% !important;
-    height: 400px !important; // Altura fija para desktop
+    height: 400px !important;
     max-width: 1150px;
     min-width: 320px;
     max-height: 500px;

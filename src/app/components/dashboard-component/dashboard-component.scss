@@ -9,7 +9,7 @@
 .filters-bar {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; // menos espacio entre grupos
+  gap: 0.5rem; 
   padding: 1.2rem 2rem 1.2rem 2rem;
   align-items: stretch;
   background: var(--my-card-bg);
@@ -18,20 +18,17 @@
   justify-content: center;
 }
 
-/* Agrupa el filtro principal y el botón */
 .main-filter-group {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.10rem; // reduce gap entre filtro y botón
+  gap: 0.10rem; 
 }
 
-/* Quita el margen inferior del mat-form-field SOLO aquí */
 .main-filter-group .mat-form-field {
   margin-bottom: 0 !important;
 }
 
-/* Ajuste visual para el botón */
 .toggle-filters-btn {
   margin-top: 0.15rem;
   margin-bottom: 0.45rem;
@@ -52,16 +49,14 @@
   }
 }
 
-/* NUEVO: Centra la tarjeta en la fila */
 .crypto-header-center-row {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2.5rem 0 2.5rem 0; // espacio arriba y abajo
+  margin: 2.5rem 0 2.5rem 0; 
 }
 
-/* Tu card, igual o mejorada */
 .crypto-header-card {
   min-width: 240px;
   max-width: 370px;
@@ -201,7 +196,7 @@
 .secondary-filters {
   overflow: hidden;
   transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s;
-  max-height: 900px; // suficiente para el contenido
+  max-height: 900px;
   opacity: 1;
   will-change: max-height, opacity;
 
@@ -249,8 +244,6 @@
   box-shadow: none;
   padding: 0.2rem 0.6rem;
   border-radius: 30px;
-  // Opcional: un ligero borde o sombra para destacar en dark
-  // border: 1px solid rgba(0,0,0,0.08);
 
   .mat-slide-toggle,
   .mat-slide-toggle-wrapper {
@@ -266,7 +259,7 @@
     align-items: flex-end;
     justify-content: center;
     gap: 1.5rem;
-    max-width: 900px; // o el tamaño que prefieras
+    max-width: 900px;
     margin: 0 auto;
     padding: 1.3rem 0.5rem 1.3rem 0.5rem;
   }
@@ -299,7 +292,7 @@
   }
 
   .toggle-filters-btn {
-    display: none !important; // No mostrar el botón en desktop
+    display: none !important;
   }
 }
 
@@ -314,7 +307,7 @@
 
   .secondary-filters {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; // 3 filtros secundarios en una sola fila
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 0.7rem;
   }
 

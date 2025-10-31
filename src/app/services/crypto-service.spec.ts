@@ -17,7 +17,7 @@ describe('CryptoService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Verifica que no queden requests pendientes
+    httpMock.verify();
   });
 
   it('should be created', () => {
@@ -35,7 +35,7 @@ describe('CryptoService', () => {
     expect(req.request.params.get('per_page')).toBe('5');
     expect(req.request.params.get('page')).toBe('2');
     expect(req.request.params.get('order')).toBe('market_cap_desc');
-    req.flush([]); // Responde con un array vacío
+    req.flush([]); 
   });
 
   it('should fetch coin market chart with correct params', () => {
@@ -47,6 +47,6 @@ describe('CryptoService', () => {
     expect(req.request.method).toBe('GET');
     expect(req.request.params.get('vs_currency')).toBe('usd');
     expect(req.request.params.get('days')).toBe('14');
-    req.flush({}); // Responde con objeto vacío
+    req.flush({});
   });
 });

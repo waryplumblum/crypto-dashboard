@@ -17,13 +17,12 @@ export class CryptoChartComponent implements OnChanges {
   @Input() coinId: string = '';
   @Input() coinName: string = '';
   @Input() days: number = 7;
-  @Input() chartType: ChartType = 'line'; // 'line' o 'bar'
+  @Input() chartType: ChartType = 'line';
   @Input() currency: string = 'usd';
 
   loading = false;
   error = '';
 
-  // Soporta ambos tipos de gráficos
   lineChartData: ChartData<'line' | 'bar'> = {
     labels: [],
     datasets: []
@@ -87,7 +86,7 @@ export class CryptoChartComponent implements OnChanges {
         title: {
           display: true,
           text: `${this.coinName} - Últimos ${this.days} días`,
-          color: titleColor, // BLANCO PURO EN DARK
+          color: titleColor,
           font: { size: 18, weight: 'bold' }
         }
       },
@@ -135,7 +134,6 @@ export class CryptoChartComponent implements OnChanges {
 
     this.cryptoService.getCoinMarketChart(this.coinId, this.currency, this.days).subscribe({
       next: (data) => {
-        // FILTRAR SOLO UN PUNTO POR DIA
         const prices = data.prices.map((x: any) => ({
           date: new Date(x[0]),
           value: x[1]
@@ -166,7 +164,7 @@ export class CryptoChartComponent implements OnChanges {
         };
 
         const elapsed = Date.now() - start;
-        const minTime = 1500; // 1.5 segundos
+        const minTime = 1500;
         if (elapsed < minTime) {
           setTimeout(() => {
             this.loading = false;
@@ -176,7 +174,6 @@ export class CryptoChartComponent implements OnChanges {
         }
       },
       error: () => {
-        // También aplica la espera en caso de error
         const elapsed = Date.now() - start;
         const minTime = 1000;
         this.error = 'No se pudo cargar el gráfico';
