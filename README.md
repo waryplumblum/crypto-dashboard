@@ -2,7 +2,7 @@
 
 Dashboard interactivo que visualiza datos en tiempo real de criptomonedas usando la API pública de CoinGecko. Incluye filtros dinámicos, gráficos interactivos, diseño responsivo, manejo de errores, pruebas unitarias y enfoque en accesibilidad.
 
-- **Stack:** Angular 16+, Angular Material, Chart.js (v4+) via ng2-charts.
+- **Stack:** Angular 20, Angular Material, Chart.js (v4+) via ng2-charts.
 - **Componentes principales:**
     - `DashboardComponent`: Muestra filtros, la tarjeta de la moneda seleccionada y el gráfico.
     - `CryptoChartComponent`: Renderiza el gráfico interactivo (línea o barras) según filtros.
